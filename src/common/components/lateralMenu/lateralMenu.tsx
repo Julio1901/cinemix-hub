@@ -1,7 +1,10 @@
+import useMobile from "../../hooks/useMobile"
 import { ButtonWithIconNotFilled } from "../buttonWithIconNotFilled/ButtonWithIconNotFilled"
 import { BottomIconsContainer, Logo, MainContainer, MiddleIconsContainer, TopIconsContainer } from "./styles"
 
 export const LateralMenu = () => {
+    const { isMobile } = useMobile()
+
     const iconFilm = require('../../../assets/icons/icon_film.png')  
     const iconHeart = require('../../../assets/icons/icon_heart.png')  
     const iconArrowUp = require('../../../assets/icons/icon_arrow_up.png')  
@@ -12,9 +15,9 @@ export const LateralMenu = () => {
     const slidersIcon = require('../../../assets/icons/icon_sliders.png')
     const logOutIcon = require('../../../assets/icons/icon_log-out.png')
     
+
     return(
         <MainContainer>
-
             <Logo src={logo} />
             <TopIconsContainer>
                 <ButtonWithIconNotFilled iconSrc={iconFilm} buttonName="Home"/>
