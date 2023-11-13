@@ -3,7 +3,13 @@ import styled from "styled-components";
 export const MainContainer = styled.div`
   width: 100%;
   height: 100vh; 
-  background-color: aliceblue; 
-  display: flex;
 
-`;
+  display: flex;
+  
+
+  @media (max-width: 600px) {
+  
+
+  }
+
+`
