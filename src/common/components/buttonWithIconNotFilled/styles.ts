@@ -5,7 +5,7 @@ export const ButtonContainer = styled.div`
     height: fit-content;
     display: flex;
     flex-direction: row;
-
+    cursor: pointer
 `
 
 export const ButtonIcon = styled.img`

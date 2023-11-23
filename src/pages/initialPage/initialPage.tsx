@@ -1,14 +1,36 @@
-import { ButtonWithIconNotFilled } from "../../common/components/buttonWithIconNotFilled/ButtonWithIconNotFilled"
-import { LateralMenu } from "../../common/components/lateralMenu/lateralMenu"
-import { MainContainer } from "./styles"
 
+import { GET_DATA } from "../../common/Network/CinemixQuerys";
+import { LateralMenu } from "../../common/components/lateralMenu/lateralMenu"
+import { MainContainer, PreviewMovieImage, PreviewContainer, TopPreviewContentContainer, TopPreviewTexts } from "./styles"
+import { ApolloClient, InMemoryCache, ApolloProvider, gql, useQuery } from '@apollo/client';
+import { ApoloClientComponent } from "../../common/Network/CinemixQuerys";
 
 export const InitialPage = () => {
 
-    return (
+    const previewMovieImage = require('../../assets/images/home-img-retangle-purple.png')
+    const { loading, error, data } = useQuery(GET_DATA, { client: ApoloClientComponent });
+
+    console.log(data)
+
+  
+    return ( 
         <MainContainer>
               <LateralMenu/>
-              <p>Initial page</p>
+              <PreviewContainer>
+                <PreviewMovieImage src={previewMovieImage}/>
+                <TopPreviewContentContainer> 
+                  <TopPreviewTexts onClick={() => {  console.log('Movies')}}>
+                    Movies
+                  </TopPreviewTexts>
+                   <TopPreviewTexts>
+                    Series
+                  </TopPreviewTexts> 
+                  <TopPreviewTexts>
+                    Documentaries
+                  </TopPreviewTexts>
+
+                </TopPreviewContentContainer>
+              </PreviewContainer>
              
         </MainContainer>
       

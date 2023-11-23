@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom"
 import useMobile from "../../hooks/useMobile"
 import { ButtonWithIconNotFilled } from "../buttonWithIconNotFilled/ButtonWithIconNotFilled"
 import { BottomIconsContainer, Logo, MainContainer, MiddleIconsContainer, TopIconsContainer } from "./styles"
 
 export const LateralMenu = () => {
     const { isMobile } = useMobile()
+    const navigate = useNavigate()
 
     const iconFilm = require('../../../assets/icons/icon_film.png')  
     const iconHeart = require('../../../assets/icons/icon_heart.png')  
@@ -14,7 +16,11 @@ export const LateralMenu = () => {
     const messageIcon = require('../../../assets/icons/icon_message-circle.png')
     const slidersIcon = require('../../../assets/icons/icon_sliders.png')
     const logOutIcon = require('../../../assets/icons/icon_log-out.png')
+    const rickIcon = require('../../../assets/icons/icon_rick.png')
     
+    const handleWithRickAndMortyButtonClick = () => {
+        navigate('/get-all-rick-and-morty-characters')
+    }
 
     return(
         <MainContainer>
@@ -28,6 +34,8 @@ export const LateralMenu = () => {
             <MiddleIconsContainer>
                 <ButtonWithIconNotFilled iconSrc={usersIcon} buttonName="Community"/>
                 <ButtonWithIconNotFilled iconSrc={messageIcon} buttonName="Social"/>
+                <ButtonWithIconNotFilled iconSrc={rickIcon} buttonName="Rick and Morty" onClick={handleWithRickAndMortyButtonClick}/>
+                
             </MiddleIconsContainer>
             <BottomIconsContainer>
              <ButtonWithIconNotFilled iconSrc={slidersIcon} buttonName="Settings"/>
