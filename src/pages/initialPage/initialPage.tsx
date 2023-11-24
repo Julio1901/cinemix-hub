@@ -8,11 +8,7 @@ import { ApoloClientComponent } from "../../common/Network/CinemixQuerys";
 export const InitialPage = () => {
 
     const previewMovieImage = require('../../assets/images/home-img-retangle-purple.png')
-    const { loading, error, data } = useQuery(GET_DATA, { client: ApoloClientComponent });
-
-    console.log(data)
-
-  
+   
     return ( 
         <MainContainer>
               <LateralMenu/>

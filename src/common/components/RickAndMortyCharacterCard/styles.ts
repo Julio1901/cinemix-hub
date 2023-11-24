@@ -50,7 +50,6 @@ export const CharName = styled.text`
     display: flex;
     align-self: center;
     color: #B8336A;
-   
 `
 
 export const CharPropertiesList = styled.ul`

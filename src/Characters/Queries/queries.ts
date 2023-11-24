@@ -3,7 +3,7 @@ import { ApoloClientComponent } from "../../common/Network/CinemixQuerys";
 
 export const GET_ALL_CHARACTERS = gql`
     query {
-        characters(page: 2) {
+        characters(page: 1) {
         info {
             count
                 next
