@@ -26,12 +26,19 @@ export const AllCharactersPage = () => {
 
     useEffect(() =>{
         if (data) {
-            setAllCharacters(data.characters.results)
+
+            const characters = data.characters.results
+            
+            if(allCharacters) {
+                setAllCharacters(allCharacters.concat(characters))
+            } else {
+                setAllCharacters(characters)
+            }
+
+           
         }
     }, [data])
 
-
-   
     const paginate = () => { 
         console.log('Paginou');
         if(data?.characters.info.next){
