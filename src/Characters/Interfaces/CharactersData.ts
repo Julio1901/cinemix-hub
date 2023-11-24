@@ -8,7 +8,7 @@ export interface CharactersData {
         next: number | null;
         prev: number | null;
       };
-      results: Character[]; // Array de personagens
+      results: Character[];
     };
  
 }
