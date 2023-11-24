@@ -13,7 +13,12 @@ export const AllCharactersPage = () => {
     const [allCharacters, setAllCharacters] = useState<Character[]>()
     const listRef = useRef<HTMLUListElement | null>(null);
 
-    const { loading, error, data } = useQuery<CharactersData>(GET_ALL_CHARACTERS, { client: ApoloClientComponent });
+    const { loading, error, data } = useQuery<CharactersData>(GET_ALL_CHARACTERS, { 
+        client: ApoloClientComponent,
+        variables: {
+            pageNumber: 1
+        }
+    });
 
     useEffect(() =>{
         console.log('test')

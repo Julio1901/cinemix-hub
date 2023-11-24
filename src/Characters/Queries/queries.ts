@@ -1,9 +1,8 @@
 import { gql } from "@apollo/client";
-import { ApoloClientComponent } from "../../common/Network/CinemixQuerys";
 
 export const GET_ALL_CHARACTERS = gql`
-    query {
-        characters(page: 1) {
+    query ($pageNumber: Int) {
+        characters(page: $pageNumber) {
         info {
             count
                 next
