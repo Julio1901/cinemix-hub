@@ -11,50 +11,64 @@ import { AllCharactersList } from "./styles";
 export const AllCharactersPage = () => {
     
     const [allCharacters, setAllCharacters] = useState<Character[]>()
+    const [paginationNumber, setPaginationNumber] = useState(1)
     const listRef = useRef<HTMLUListElement | null>(null);
+    const [lastScrollLeft, setLastScrollLeft] = useState(0);
+    const isFirstRender = useRef(true)
 
-    const { loading, error, data } = useQuery<CharactersData>(GET_ALL_CHARACTERS, { 
+    const { loading, error, data, refetch } = useQuery<CharactersData>(GET_ALL_CHARACTERS, { 
         client: ApoloClientComponent,
         variables: {
-            pageNumber: 1
+            pageNumber: paginationNumber
         }
-    });
+    }, )
+
 
     useEffect(() =>{
-        console.log('test')
-        setAllCharacters(data?.characters.results)
-        console.log(data?.characters.results)
+        if (data) {
+            setAllCharacters(data.characters.results)
+        }
+    }, [data])
 
 
-    }, [loading])
-
+   
+    const paginate = () => { 
+        console.log('Paginou');
+        if(data?.characters.info.next){
+            setPaginationNumber(data.characters.info.next)
+            refetch({ pageNumber: data.characters.info.next });
+        }
+       
+    }
 
     const handleScroll = () => {
-        const allCharactersList = listRef.current;
-      
+      const allCharactersList = listRef.current;
+  
+      if (allCharactersList) {
+        const { scrollLeft, scrollWidth, clientWidth } = allCharactersList;
+  
+        if (scrollLeft > lastScrollLeft && scrollLeft + clientWidth >= scrollWidth - 10) {
+          console.log('A lista foi scrollada até o final!');
+          paginate();
+        }
+  
+        setLastScrollLeft(scrollLeft);
+      }
+    };
+  
+    useEffect(() => {
+      const allCharactersList = listRef.current;
+  
+      if (allCharactersList) {
+        allCharactersList.addEventListener('scroll', handleScroll);
+      }
+  
+      return () => {
         if (allCharactersList) {
-          const { scrollLeft, scrollWidth, clientWidth } = allCharactersList;
-      
-          if (scrollLeft + clientWidth >= scrollWidth - 10) {
-            console.log('A lista foi scrollada até o final!');
-            // Dispare aqui a ação que você deseja executar ao chegar no final da lista
-          }
+          allCharactersList.removeEventListener('scroll', handleScroll);
         }
       };
-      
-      useEffect(() => {
-        const allCharactersList = listRef.current;
-      
-        if (allCharactersList) {
-          allCharactersList.addEventListener('scroll', handleScroll);
-        }
-      
-        return () => {
-          if (allCharactersList) {
-            allCharactersList.removeEventListener('scroll', handleScroll);
-          }
-        };
-      }, []);
+    }, [lastScrollLeft]);
     
     return(
     
