@@ -13,10 +13,10 @@ export const MainContainer = styled.div`
     border: 4px solid #231942;
 
     @media (max-width: 600px) {
-        width: 200px;
-        height: 250px;
-
-    }
+         width: 190px;
+         height: 250px;
+}
+ 
 `
 
 export const ImageContainer = styled.div`
@@ -35,10 +35,9 @@ export const CharImage = styled.img`
         border-radius: 90px;
 
         @media (max-width: 600px) {
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             border-radius: 70px;
-
     }
 `
 
@@ -50,6 +49,9 @@ export const CharName = styled.text`
     display: flex;
     align-self: center;
     color: #B8336A;
+    @media (max-width: 600px) {
+        font-size: 20px;
+}
 `
 
 export const CharPropertiesList = styled.ul`
@@ -61,6 +63,10 @@ export const CharPropertiesList = styled.ul`
     overflow-x: hidden;
     list-style: none;
     padding-left: 5px; 
+     @media (max-width: 600px) {
+        padding: 10;
+     }
+
 `
 
 export const ListContainer = styled.div`
@@ -70,8 +76,14 @@ export const ListContainer = styled.div`
     align-self: center;
     flex-direction: row;
     background-color: #8A89C0;
-    
     border-radius: 15px;
+
+    @media (max-width: 600px) {
+        width: 99%;
+        margin-bottom: 20px;
+ 
+}
+
 `     
 
 export const CharPropertiesListItemContainer = styled.text`
@@ -86,11 +98,17 @@ export const CharPropertiesListItemContainer = styled.text`
 export const CharPropertiesListItemName = styled.text`
     font-size: 20px;
     color: #17FF39;
+    @media (max-width: 600px) {
+        font-size: 15px;
+    }
 `
 
 export const CharPropertiesListItemContent = styled.text`
     font-size: 20px;
     color: #17FF39;
+    @media (max-width: 600px) {
+        font-size: 15px;
+    }
 `
 export const LeftListButton = styled.button`
     width: 30px;
@@ -103,6 +121,10 @@ export const LeftListButton = styled.button`
     background-size: contain; /* Ajuste conforme necessário */
     background-repeat: no-repeat;
     background-color: transparent;
+    @media (max-width: 600px) {
+        width: 20px;
+        height: 20px;
+    }
 `
 
 export const RightListButton = styled.button`
@@ -116,4 +138,8 @@ export const RightListButton = styled.button`
     background-size: contain; /* Ajuste conforme necessário */
     background-repeat: no-repeat;
     background-color: transparent;
+    @media (max-width: 600px) {
+        width: 20px;
+        height: 20px;
+    }
 `;

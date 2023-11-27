@@ -6,6 +6,7 @@ import { CharactersData } from "../../Characters/Interfaces/CharactersData";
 import { Character } from "../../Characters/Interfaces/Character";
 import { useEffect, useRef, useState } from "react";
 import { AllCharactersList } from "./styles";
+import useMobile from "../../common/hooks/useMobile";
 
 
 export const AllCharactersPage = () => {
@@ -14,7 +15,8 @@ export const AllCharactersPage = () => {
     const [paginationNumber, setPaginationNumber] = useState(1)
     const listRef = useRef<HTMLUListElement | null>(null);
     const [lastScrollLeft, setLastScrollLeft] = useState(0);
-    const isFirstRender = useRef(true)
+    const isMobile = useMobile()
+    
 
     const { loading, error, data, refetch } = useQuery<CharactersData>(GET_ALL_CHARACTERS, { 
         client: ApoloClientComponent,
@@ -23,39 +25,32 @@ export const AllCharactersPage = () => {
         }
     }, )
 
-
     useEffect(() =>{
         if (data) {
-
             const characters = data.characters.results
-            
             if(allCharacters) {
                 setAllCharacters(allCharacters.concat(characters))
             } else {
                 setAllCharacters(characters)
             }
-
-           
         }
     }, [data])
 
     const paginate = () => { 
-        console.log('Paginou');
         if(data?.characters.info.next){
             setPaginationNumber(data.characters.info.next)
             refetch({ pageNumber: data.characters.info.next });
         }
-       
     }
 
     const handleScroll = () => {
       const allCharactersList = listRef.current;
+      console.log()
   
       if (allCharactersList) {
         const { scrollLeft, scrollWidth, clientWidth } = allCharactersList;
-  
+        
         if (scrollLeft > lastScrollLeft && scrollLeft + clientWidth >= scrollWidth - 10) {
-          console.log('A lista foi scrollada até o final!');
           paginate();
         }
   
@@ -63,6 +58,19 @@ export const AllCharactersPage = () => {
       }
     };
   
+
+    // const handleScroll = () => {
+    //   const allCharactersList = listRef.current;
+      
+    //   if(allCharactersList){
+    //     const bottom = allCharactersList.scrollHeight - allCharactersList.scrollTop === allCharactersList.clientHeight;
+    //     if (bottom) { console.log('Paginou') }
+    //   }
+   
+    // };
+  
+  
+
     useEffect(() => {
       const allCharactersList = listRef.current;
   
